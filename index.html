@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Spatiotemporal Degradation-Aware 3D Gaussian Splatting for Realistic Underwater Scene Reconstruction.">
+    <meta name="keywords" content="MarineSTD-GS, 3DGS, Underwater">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spatiotemporal Degradation-Aware 3D Gaussian Splatting for Realistic Underwater Scene Reconstruction</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <link rel="icon" href="./static/images/MarineSTD-GS_icon.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">
+                            <img src="./static/images/MarineSTD-GS_icon.png" alt="Icon" style="vertical-align: middle; width: 100px; height: 100px; margin-right: -10px;">
+                            Spatiotemporal Degradation-Aware 3D Gaussian Splatting for<br> Realistic Underwater Scene Reconstruction
+                        </h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Anonymous author</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Reconstructing realistic underwater scenes from video sequences remains a meaningful yet challenging task in the multimedia domain. The inherent spatiotemporal degradations in underwater imaging—such as caustics, flickering, attenuation, and backscattering—often  cause advanced 3D reconstruction methods like Neural Radiance Fields and 3D Gaussian Splatting to fail, producing inaccurate geometry and appearance. While a few recent works have explored underwater degradation-aware reconstruction, they often address either temporal or spatial degradation alone, falling short in more real-world underwater scenarios where both types of degradation occur simultaneously. We propose the first 3D Gaussian Splatting framework that explicitly models both temporal and spatial degradations for realistic underwater scene reconstruction. To disentangle realistic appearance from degraded observations, we introduce a Spatiotemporal Degradation-Aware Appearance Modeling strategy. Specifically, each Gaussian is assigned an intrinsic color attribute representing the true scene appearance, and a spatiotemporally-aware degraded color attribute incorporating degradation effects. At each time and viewpoint, the degraded color is physically derived from the intrinsic one, guided by global and local features extracted from the degraded images, and used for rendering and supervision. To ensure stable optimization, we propose a straightforward yet effective multi-stage training strategy incorporating pseudo-depth maps to guide geometry learning. We also construct a simulated benchmark dataset with diverse degradation types and levels, along with ground-truth appearance for evaluation. Extensive experiments on real and synthetic datasets demonstrate that our method handles spatiotemporal degradation more effectively, achieves high-quality underwater scene reconstruction, and outperforms existing approaches in novel view synthesis with realistic appearance as if rendered in a water-free environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-one">
+                    <h3 class="title is-4">The pipeline of MarineSTD-GS</h3>
+                    <figure class="image">
+                        <img src="static/images/Pipeline.png" alt="MarineSTD-GS Pipeline">
+                        <figcaption style="margin-top: 10px; font-size: 1rem; color: #555; text-align: justify; max-width: 95%; margin: 1px auto;">
+                            (a) Given underwater video sequences with complex spatiotemporal degradations, MarineSTD-GS performs holistic scene understanding by disentangling realistic scene representations—recovering true color and geometry (depth), and estimating spatial degradation parameters (e.g., attenuation and backscatter) as well as transient caustic patterns. (b) Compared to state-of-the-art underwater 3D reconstruction methods, our approach produces more faithful and consistent scene appearances, effectively reducing color distortion and caustic-induced flickering. (c) Quantitative results show that MarineSTD-GS consistently outperforms all baselines across varying degradation levels, demonstrating superior robustness.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This website is licensed under a <a rel="license"
+                                                                href="http://creativecommons.org/licenses/by-sa/4.0/">
+                                Creative
+                                Commons Attribution-ShareAlike 4.0 International License
+                            </a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
