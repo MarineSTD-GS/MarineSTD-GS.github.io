@@ -19,19 +19,53 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+    <script src="./static/js/video_comparison.js"></script>
+
+    <style>
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        </style>
+            
 </head>
 <body>
 
+    <!-- Logo and  Title -->
     <section class="hero">
         <div class="hero-body">
             <div class="container is-max-desktop">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">
-                            <img src="./static/images/MarineSTD-GS_icon.png" alt="Icon" style="vertical-align: middle; width: 100px; height: 100px; margin-right: -10px;">
-                            Spatiotemporal Degradation-Aware 3D Gaussian Splatting for<br> Realistic Underwater Scene Reconstruction
+                        <h1 class="title is-1 publication-title" style="line-height: 1.2; margin-bottom: 0;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; gap: 16px; animation: fadeIn 1.2s ease-in-out;">
+                                <img src="./static/images/MarineSTD-GS_icon.png" alt="Icon"
+                                style="
+                                   width: 120px;
+                                   height: 120px;
+                                   border-radius: 12%;
+                               ">
+                                <span style="
+                                    font-size: 2.9rem;
+                                    font-weight: 700;
+                                    background: linear-gradient(90deg, #0753b6, #0cb5bb, #c8d6d6);
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color: transparent;
+                                ">MarineSTD-GS</span>
+                            </span>
                         </h1>
-                        <div class="is-size-5 publication-authors">
+                        <h2 class="title is-3 publication-title" style="margin-top: 0.7rem; animation: fadeIn 1.8s ease-in-out; line-height: 1.4;">
+                            Spatiotemporal Degradation-Aware 3D Gaussian Splatting for<br>
+                            Realistic Underwater Scene Reconstruction
+                        </h2>
+                        <div class="is-size-4 publication-authors">
                             <span class="author-block">Anonymous author</span>
                         </div>
                     </div>
@@ -39,39 +73,494 @@
             </div>
         </div>
     </section>
+    
 
+    <!-- ⬇️ Cover figure / overview -->
+    <section class="section" style="padding-top: 0.1rem; padding-bottom: 2rem;">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-one">
+                    <figure class="image" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.05); background: white;">
+                        <img src="static/images/Pipeline.png" alt="Overview of MarineSTD-GS"
+                             style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                        <figcaption style="margin-top: 10px; font-size: 1rem; color: #555; text-align: justify;">
+                          <strong>MarineSTD-GS at a Glance.</strong>
+                          MarineSTD-GS learns realistic underwater scene appearance and geometry by disentangling degradation components. It outperforms state-of-the-art methods in visual fidelity and quantitative accuracy across various degradation levels.
+                        </figcaption>
+                      </figure>
+                      
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract -->
     <section class="section" style="padding-top: 0;">
         <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
+            <div class="columns is-centered has-text-centered" style="margin-top: -20px;">
                 <div class="column is-four-fifths">
-                    <h2 class="title is-3">Abstract</h2>
+                    <h2 class="title is-2">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            Reconstructing realistic underwater scenes from video sequences remains a meaningful yet challenging task in the multimedia domain. The inherent spatiotemporal degradations in underwater imaging—such as caustics, flickering, attenuation, and backscattering—often  cause advanced 3D reconstruction methods like Neural Radiance Fields and 3D Gaussian Splatting to fail, producing inaccurate geometry and appearance. While a few recent works have explored underwater degradation-aware reconstruction, they often address either temporal or spatial degradation alone, falling short in more real-world underwater scenarios where both types of degradation occur simultaneously. We propose the first 3D Gaussian Splatting framework that explicitly models both temporal and spatial degradations for realistic underwater scene reconstruction. To disentangle realistic appearance from degraded observations, we introduce a Spatiotemporal Degradation-Aware Appearance Modeling strategy. Specifically, each Gaussian is assigned an intrinsic color attribute representing the true scene appearance, and a spatiotemporally-aware degraded color attribute incorporating degradation effects. At each time and viewpoint, the degraded color is physically derived from the intrinsic one, guided by global and local features extracted from the degraded images, and used for rendering and supervision. To ensure stable optimization, we propose a straightforward yet effective multi-stage training strategy incorporating pseudo-depth maps to guide geometry learning. We also construct a simulated benchmark dataset with diverse degradation types and levels, along with ground-truth appearance for evaluation. Extensive experiments on real and synthetic datasets demonstrate that our method handles spatiotemporal degradation more effectively, achieves high-quality underwater scene reconstruction, and outperforms existing approaches in novel view synthesis with realistic appearance as if rendered in a water-free environment.
+                            Reconstructing realistic underwater scenes from underwater video remains a meaningful yet challenging task in the multimedia domain. 
+                            The inherent spatiotemporal degradations in underwater imaging, including caustics, flickering, attenuation, and backscattering, 
+                            often lead to inaccurate geometry and appearance in existing 3D reconstruction methods. 
+                            While a few recent works have explored underwater degradation-aware reconstruction, they often address either temporal or spatial degradation alone, 
+                            falling short in more real-world underwater scenarios where both types of degradation occur. 
+                        </p>
+                        <p>We propose <strong>MartineSTD-GS</strong>, a novel 3D Gaussian Splatting-based framework that explicitly models both temporal and spatial degradations 
+                            for realistic underwater scene reconstruction. Specifically, we introduce two paired Gaussian primitives: 
+                            Intrinsic Gaussians represent the true scene, while Degraded Gaussians render the observations. 
+                            The degraded colors are physically derived from the intrinsic ones via a Spatiotemporal Degradation Modeling (SDM) module, 
+                            enabling self-supervised disentanglement of realistic appearance from degraded images. To ensure stable training and accurate geometry, 
+                            we further propose a Multi-Stage Optimization strategy and a Depth-Guided Geometry Loss. 
+                            We also construct a simulated benchmark with diverse degradations and ground-truth appearances for comprehensive evaluation. 
+                        </p>
+                        <p>
+                            Experiments on both simulated and real-world datasets show that MarineSTD-GS robustly handles spatiotemporal degradations and outperforms existing methods in novel view synthesis with realistic, water-free scene appearances.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section>    
 
-    <section class="section">
-        <div class="container is-max-desktop">
-            <div class="columns is-centered">
-                <div class="column is-one">
-                    <h3 class="title is-4">The pipeline of MarineSTD-GS</h3>
-                    <figure class="image">
-                        <img src="static/images/Pipeline.png" alt="MarineSTD-GS Pipeline">
-                        <figcaption style="margin-top: 10px; font-size: 1rem; color: #555; text-align: justify; max-width: 95%; margin: 1px auto;">
-                            (a) Given underwater video sequences with complex spatiotemporal degradations, MarineSTD-GS performs holistic scene understanding by disentangling realistic scene representations—recovering true color and geometry (depth), and estimating spatial degradation parameters (e.g., attenuation and backscatter) as well as transient caustic patterns. (b) Compared to state-of-the-art underwater 3D reconstruction methods, our approach produces more faithful and consistent scene appearances, effectively reducing color distortion and caustic-induced flickering. (c) Quantitative results show that MarineSTD-GS consistently outperforms all baselines across varying degradation levels, demonstrating superior robustness.
-                        </figcaption>
-                    </figure>
-                </div>
+
+<!-- Method -->
+<section class="section">
+    <div class="container is-max-desktop">
+      <!-- Main Title -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-2 has-text-centered">Method</h2>
+        </div>
+      </div>
+  
+      <!-- (1) Pipeline Figure -->
+      <div class="columns is-centered">
+        <div class="column is-one">
+          <h3 class="title is-4">The overall pipeline of MartineSTD-GS</h3>
+          <figure class="image">
+            <img src="static/images/overview.png" alt="Pipeline of MartineSTD-GS" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+            <figcaption style="margin-top: 10px; font-size: 1rem; color: #555; text-align: justify;">
+                Given a training view, MarineSTD-GS predicts degradation parameters to derive degraded colors for rendering. Optimization is guided by photometric supervision, depth consistency, and a multi-stage strategy to ensure stable training.
+              </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- (2) SDM Structure Figure -->
+      <div class="columns is-centered">
+        <div class="column is-one">
+          <h3 class="title is-4">Structure of the Spatiotemporal Degradation Modeling module.</h3>
+          <figure class="image">
+            <img src="static/images/SDM.png" alt="Spatiotemporal Degradation Modeling Module" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+            <figcaption style="margin-top: 10px; font-size: 1rem; color: #555; text-align: justify;">
+            </figcaption>   
+          </figure>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  
+<!-- ✅ Results  -->
+<section class="section" style="padding-top: 1rem; padding-bottom: 0.1rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2 has-text-centered" style="margin-bottom: 0.08rem;">Results</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">1. Holistic Scene Understanding</h3>
+    <p>
+      MarineSTD-GS disentangles realistic scene representations from underwater videos, including true appearance (color and geometry) and degradation components like attenuation, backscatter, and caustics.
+    </p>
+
+
+      <!-- 1：S1/S2/S3（Pattern A, Medium） -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-one">
+          <h4 class="title is-4">Disentanglement across Different simulated Scenes</h4>
+          <p class="has-text-justified">
+            S1, S2, and S3 scenes under Caustic Pattern A with medium degradation.
+          </p>
+          <div class="tabs-widget" style="margin-top: 10px;">
+            <div class="tabs is-toggle is-toggle-rounded is-small is-centered">
+              <ul id="tab-group-1">
+                <li id="tab1-S1" class="is-active"><a onclick="changeVideo('video1', 'S1')">S1_A_Med</a></li>
+                <li id="tab1-S2"><a onclick="changeVideo('video1', 'S2')">S2_A_Med</a></li>
+                <li id="tab1-S3"><a onclick="changeVideo('video1', 'S3')">S3_A_Med</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="video-container">
+            <video id="video1" class="video" title="Disentanglement S1_A_Med" loop playsinline autoplay muted src="static/videos/Disentangle_S1_A_Med.mp4" onplay="resizeAndPlay(this)"></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- S2 Pattern -->
+      <div class="columns is-centered" style="margin-top: 3rem;">
+        <div class="column is-one">
+          <h4 class="title is-4">Disentanglement under Different Caustic Patterns</h4>
+          <p class="has-text-justified">
+            Scene S2 under medium degradation with Patterns A, B, and C.
+          </p>
+          <div class="tabs-widget" style="margin-top: 10px;">
+            <div class="tabs is-toggle is-toggle-rounded is-small is-centered">
+              <ul id="tab-group-2">
+                <li id="tab2-A" class="is-active"><a onclick="changeVideo('video2', 'A')">S2_A_Med</a></li>
+                <li id="tab2-B"><a onclick="changeVideo('video2', 'B')">S2_B_Med</a></li>
+                <li id="tab2-C"><a onclick="changeVideo('video2', 'C')">S2_C_Med</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="video-container">
+            <video id="video2" class="video" title="Disentanglement S2_Patterns" loop playsinline autoplay muted src="static/videos/Disentangle_S2_A_Med.mp4" onplay="resizeAndPlay(this)"></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- S3  -->
+      <div class="columns is-centered" style="margin-top: 3rem;">
+        <div class="column is-one">
+          <h4 class="title is-4">Disentanglement under Different Degradation Levels</h4>
+          <p class="has-text-justified">
+            Scene S3 under Caustic Pattern A with low, medium, and high degradation.
+          </p>
+          <div class="tabs-widget" style="margin-top: 10px;">
+            <div class="tabs is-toggle is-toggle-rounded is-small is-centered">
+              <ul id="tab-group-3">
+                <li id="tab3-Low" class="is-active"><a onclick="changeVideo('video3', 'Low')">S3_A_Low</a></li>
+                <li id="tab3-Med"><a onclick="changeVideo('video3', 'Med')">S3_A_Med</a></li>
+                <li id="tab3-High"><a onclick="changeVideo('video3', 'High')">S3_A_High</a></li>
+              </ul>
             </div>
         </div>
-    </section>
+          <div class="video-container">
+            <video id="video3" class="video" title="Disentanglement S3_Levels" loop playsinline autoplay muted src="static/videos/Disentangle_S3_A_Med.mp4" onplay="resizeAndPlay(this)"></video>
+          </div>
+        </div>
+      </div>
 
-    <footer class="footer">
+      <!-- ✅ Real-world Dataset  -->
+      <div class="columns is-centered" style="margin-top: 3rem;">
+        <div class="column is-one">
+          <h3 class="title is-4">Holistic Scene Understanding on Real-world Underwater Videos</h3>
+          <p class="has-text-justified">
+            Real-world videos from BVICoral and Flsea_VI datasets demonstrate the disentanglement of scene appearance and degradation in complex natural underwater environments.
+          </p>
+          <div class="tabs-widget" style="margin-top: 10px;">
+          <div class="tabs is-toggle is-toggle-rounded is-small is-centered">
+            <ul id="tab-group-real">
+              <li id="tab-real-11404" class="is-active"><a onclick="changeVideo('videoReal', '11404')">11404</a></li>
+              <li id="tab-real-11409"><a onclick="changeVideo('videoReal', '11409')">11409</a></li>
+              <li id="tab-real-11414"><a onclick="changeVideo('videoReal', '11414')">11414</a></li>
+              <li id="tab-real-11435"><a onclick="changeVideo('videoReal', '11435')">11435</a></li>
+              <li id="tab-real-Sub_Pier"><a onclick="changeVideo('videoReal', 'Sub_Pier')">Sub_Pier</a></li>
+              <li id="tab-real-Pier_Path"><a onclick="changeVideo('videoReal', 'Pier_Path')">Pier_Path</a></li>
+              <li id="tab-real-Landward"><a onclick="changeVideo('videoReal', 'Landward')">Landward</a></li>
+              <li id="tab-real-Coral_Table_Loop"><a onclick="changeVideo('videoReal', 'Coral_Table_Loop')">Coral_Table_Loop</a></li>
+            </ul>
+          </div>
+        </div>
+          <div class="video-container">
+            <video id="videoReal" class="video" title="Real-world Disentanglement" loop playsinline autoplay muted src="static/videos/Disentangle_real_11404.mp4" onplay="resizeAndPlay(this)"></video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</section>
+
+
+
+<script>
+  const videoSources = {
+    video1: {
+      S1: 'static/videos/Disentangle/Disentangle_S1_A_Med.mp4',
+      S2: 'static/videos/Disentangle/Disentangle_S2_A_Med.mp4',
+      S3: 'static/videos/Disentangle/Disentangle_S3_A_Med.mp4',
+    },
+    video2: {
+      A: 'static/videos/Disentangle/Disentangle_S2_A_Med.mp4',
+      B: 'static/videos/Disentangle/Disentangle_S2_B_Med.mp4',
+      C: 'static/videos/Disentangle/Disentangle_S2_C_Med.mp4',
+    },
+    video3: {
+      Low: 'static/videos/Disentangle/Disentangle_S3_A_Low.mp4',
+      Med: 'static/videos/Disentangle/Disentangle_S3_A_Med.mp4',
+      High: 'static/videos/Disentangle/Disentangle_S3_A_High.mp4',
+    },
+    videoReal: {
+      '11404': 'static/videos/Disentangle/Disentangle_real_11404.mp4',
+      '11409': 'static/videos/Disentangle/Disentangle_real_11409.mp4',
+      '11414': 'static/videos/Disentangle/Disentangle_real_11414.mp4',
+      '11435': 'static/videos/Disentangle/Disentangle_real_11435.mp4',
+      'Sub_Pier': 'static/videos/Disentangle/Disentangle_real_Sub_Pier.mp4',
+      'Pier_Path': 'static/videos/Disentangle/Disentangle_real_Pier_Path.mp4',
+      'Landward': 'static/videos/Disentangle/Disentangle_real_Landward.mp4',
+      'Coral_Table_Loop': 'static/videos/Disentangle/Disentangle_real_Coral_Table_Loop.mp4',
+    },
+  };
+
+  function changeVideo(videoId, key) {
+    const videoEl = document.getElementById(videoId);
+    if (videoSources[videoId][key]) {
+      videoEl.src = videoSources[videoId][key];
+      videoEl.load();
+      videoEl.play();
+    }
+
+    const tabGroup = document.querySelectorAll(`#tab-group-${videoId === 'videoReal' ? 'real' : videoId.slice(-1)} li`);
+    tabGroup.forEach(tab => tab.classList.remove('is-active'));
+    const activeTab = document.getElementById(`${videoId === 'videoReal' ? 'tab-real-' : `tab${videoId.slice(-1)}-`}${key}`);
+    if (activeTab) activeTab.classList.add('is-active');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    changeVideo('video1', 'S1');
+    changeVideo('video2', 'A');
+    changeVideo('video3', 'Med');
+    changeVideo('videoReal', '11404');
+  });
+</script>
+
+
+
+<style>
+  .video-container {
+    margin-top: 15px;
+    text-align: center;
+  }
+  .video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+  .tabs a:hover {
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease;
+  }
+</style>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">2. Comparisons of Novel View Synthesis on Restored Scenes</h3>
+    <p>
+      Below, you can choose different scenes for comparison.
+      Each selected scene will present three comparisons: RecGS vs Ours, SeaSplat vs Ours, and WaterSplatting vs Ours.
+      Please select a scene from the dropdown menu:
+    </p>
+
+    <div class="tabs-widget" style="margin-top: 20px;">
+      <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+        <ul class="is-marginless" id="restoration-tabs">
+          <li id="tab-restoration-S1_A_Med"><a onclick="changeRestorationScene('S1_A_Med')">S1_A_Med</a></li>
+          <li id="tab-restoration-S2_A_Med"><a onclick="changeRestorationScene('S2_A_Med')">S2_A_Med</a></li>
+          <li id="tab-restoration-S3_A_Med"><a onclick="changeRestorationScene('S3_A_Med')">S3_A_Med</a></li>          
+          <li id="tab-restoration-11404"><a onclick="changeRestorationScene('11404')">11404</a></li>
+          <li id="tab-restoration-Landward"><a onclick="changeRestorationScene('Landward')">Landward</a></li>
+          <li id="tab-restoration-pier_path"><a onclick="changeRestorationScene('pier_path')">Pier_Path</a></li>
+          <li id="tab-restoration-sub_pier"><a onclick="changeRestorationScene('sub_pier')">Sub_Pier</a></li>
+          <li id="tab-restoration-D5"><a onclick="changeRestorationScene('D5')">D5</a></li>
+          <li id="tab-restoration-Curasao"><a onclick="changeRestorationScene('Curasao')">Curacao</a></li>          
+        </ul>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="video-container">
+        <h4 class="video-title" style="font-size: 1.3rem;">RecGS vs Ours</h4>
+        <video class="video" id="left-restoration-video" loop playsinline autoplay muted
+          src="static/videos/NVS/BVICoral_11404_RecGS_vs_Ours.mp4" onplay="resizeAndPlay(this)"></video>
+        <canvas height=0 class="videoMerge" id="left-restoration-videoMerge"></canvas>
+      </div>
+      <div class="video-container">
+        <h4 class="video-title" style="font-size: 1.3rem;">SeaSplat vs Ours</h4>
+        <video class="video" id="middle-restoration-video" loop playsinline autoplay muted
+          src="static/videos/NVS/BVICoral_11404_SeaSplat_vs_Ours.mp4" onplay="resizeAndPlay(this)"></video>
+        <canvas height=0 class="videoMerge" id="middle-restoration-videoMerge"></canvas>
+      </div>
+      <div class="video-container">
+        <h4 class="video-title" style="font-size: 1.3rem;">WaterSplatting vs Ours</h4>
+        <video class="video" id="right-restoration-video" loop playsinline autoplay muted
+          src="static/videos/NVS/BVICoral_11404_WaterSplatting_vs_Ours.mp4" onplay="resizeAndPlay(this)"></video>
+        <canvas height=0 class="videoMerge" id="right-restoration-videoMerge"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const restorationVideoPaths = {
+    '11404': {
+      'left': 'static/videos/NVS/BVICoral_11404_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/BVICoral_11404_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/BVICoral_11404_WaterSplatting_vs_Ours.mp4'
+    },
+    'Landward': {
+      'left': 'static/videos/NVS/flsea_vi_Landward_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/flsea_vi_Landward_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/flsea_vi_Landward_WaterSplatting_vs_Ours.mp4'
+    },
+    'pier_path': {
+      'left': 'static/videos/NVS/flsea_vi_pier_path_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/flsea_vi_pier_path_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/flsea_vi_pier_path_WaterSplatting_vs_Ours.mp4'
+    },
+    'sub_pier': {
+      'left': 'static/videos/NVS/flsea_vi_sub_pier_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/flsea_vi_sub_pier_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/flsea_vi_sub_pier_WaterSplatting_vs_Ours.mp4'
+    },
+    'S1_A_Med': {
+      'left': 'static/videos/NVS/S1_A_Med_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/S1_A_Med_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/S1_A_Med_WaterSplatting_vs_Ours.mp4'
+    },
+    'S2_A_Med': {
+      'left': 'static/videos/NVS/S2_A_Med_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/S2_A_Med_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/S2_A_Med_WaterSplatting_vs_Ours.mp4'
+    },
+    'S3_A_Med': {
+      'left': 'static/videos/NVS/S3_A_Med_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/S3_A_Med_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/S3_A_Med_WaterSplatting_vs_Ours.mp4'
+    },    
+    'D5': {
+      'left': 'static/videos/NVS/SeaThru_D5_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/SeaThru_D5_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/SeaThru_D5_WaterSplatting_vs_Ours.mp4'
+    },
+    'Curasao': {
+      'left': 'static/videos/NVS/Seathru_NeRF_Curasao_RecGS_vs_Ours.mp4',
+      'middle': 'static/videos/NVS/Seathru_NeRF_Curasao_SeaSplat_vs_Ours.mp4',
+      'right': 'static/videos/NVS/Seathru_NeRF_Curasao_WaterSplatting_vs_Ours.mp4'
+    }    
+  };
+
+  // 切换场景并更新视频路径
+  function changeRestorationScene(scene) {
+    const leftVideo = document.getElementById('left-restoration-video');
+    const middleVideo = document.getElementById('middle-restoration-video');
+    const rightVideo = document.getElementById('right-restoration-video');
+
+    leftVideo.src = restorationVideoPaths[scene].left;
+    middleVideo.src = restorationVideoPaths[scene].middle;
+    rightVideo.src = restorationVideoPaths[scene].right;
+
+    leftVideo.load();
+    middleVideo.load();
+    rightVideo.load();
+
+    const tabs = document.querySelectorAll('#restoration-tabs li');
+    tabs.forEach(tab => tab.classList.remove('is-active'));
+    const activeTab = document.getElementById('tab-restoration-' + scene);
+    if (activeTab) activeTab.classList.add('is-active');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    changeRestorationScene('S1_A_Med');
+  });
+</script>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .video-container {
+    flex: 1;
+    min-width: 30%;
+    text-align: center;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .video-container canvas {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+</style>
+
+<!-- ✅ More Applications Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">3. More Applications</h3>
+    <p class="has-text-justified">
+      In addition to synthesizing novel views of clean underwater scenes, MarineSTD-GS supports two advanced applications enabled by the disentangled representations of scene content and water degradation:
+      <strong>(1)</strong> novel view synthesis with consistent intrinsic water effects, and <strong>(2)</strong> cross-scene transfer of water appearance.
+      Below we present three representative examples based on scenes <code>11404</code>, <code>11435</code>, and <code>Curacao</code>.
+    </p>
+    
+    
+    <figure class="image" style="margin-top: 1rem;">
+      <img src="static/images/applications_source_reference.png" alt="Source and Reference Scene Mapping">
+      <figcaption style="text-align: center; font-size: 0.95rem; color: #555; margin-top: 5px;">
+        Mapping of <strong>Source Scenes</strong> (11404, 11435, Curacao) and <strong>Reference Scenes</strong> (D5, Sub_Pier) used for cross-scene transfer.
+      </figcaption>
+    </figure>
+
+    <div class="video-container" style="margin-top: 2rem;">
+      <video class="video" loop playsinline autoplay muted style="width: 100%; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
+        <source src="static/videos/Transfer/Transfer_11404.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="video-container" style="margin-top: 1.5rem;">
+      <video class="video" loop playsinline autoplay muted style="width: 100%; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
+        <source src="static/videos/Transfer/Transfer_11435.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="video-container" style="margin-top: 1.5rem;">
+      <video class="video" loop playsinline autoplay muted style="width: 100%; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
+        <source src="static/videos/Transfer/Transfer_Curasao.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <p class="has-text-justified" style="margin-top: 2rem;">
+      In each row, the leftmost video shows <strong>intrinsic water effect rendering</strong> using averaged water parameters extracted from the same scene.
+      The middle and right videos demonstrate <strong>cross-scene water transfer</strong>, where degradation effects from reference scenes (D5 and Sub_Pier) are applied to the disentangled intrinsic content of the current source scene.
+      These examples illustrate how MarineSTD-GS enables controllable and physically interpretable simulation of diverse underwater environments.
+    </p>
+
+    
+  </div>
+</section>
+
+
+
+  <!-- End -->
+  <footer class="footer">
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-8">
