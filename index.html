@@ -366,6 +366,14 @@
     <p>
       Below, you can choose different scenes for comparison.
       Each selected scene will present three comparisons: RecGS vs Ours, SeaSplat vs Ours, and WaterSplatting vs Ours.
+
+        <br><br>
+        Specifically, <strong>RecGS</strong> fails to remove backscattering and attenuation effects, resulting in noticeable floaters and strong color casts. 
+        <strong>SeaSplat</strong> mitigates some water-induced degradations compared to RecGS but tends to over-amplify brightness and color saturation, leading to unnatural visual artifacts. 
+        <strong>WaterSplatting</strong> effectively suppresses spatial degradations but struggles with local over-exposures under caustics. 
+        In contrast, <strong>our method</strong> reconstructs more realistic scene appearances, preserving accurate colors without bias, over-saturation, or brightness artifacts.
+        <br><br>
+        
       Please select a scene from the dropdown menu:
     </p>
 
