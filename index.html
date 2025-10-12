@@ -65,9 +65,69 @@
                             Spatiotemporal Degradation-Aware 3D Gaussian Splatting for<br>
                             Realistic Underwater Scene Reconstruction
                         </h2>
-                        <div class="is-size-4 publication-authors">
-                            <span class="author-block">Anonymous author</span>
+
+                        <!-- ➕ ACM MM 2025 接收信息 -->
+                        <h3 class="subtitle is-5" style="margin-top: 0.8rem; color: #444;">
+                          <i class="fas fa-award" style="margin-right: 6px;"></i>
+                          Accepted to <strong>ACM Multimedia 2025</strong>
+                        </h3>
+
+                        <!-- Author List with Email Links -->
+                        <div class="is-size-5 publication-authors">
+                          <span class="author-block"><a href="mailto:liushaohua@buaa.edu.cn">Shaohua Liu</a><sup>1</sup>,</span>
+                          <span class="author-block"><a href="mailto:gaoning_ai@buaa.edu.cn">Ning Gao</a><sup>1</sup>,</span>
+                          <span class="author-block"><a href="mailto:zuoyagu@buaa.edu.cn">Zuoya Gu</a><sup>1</sup>,</span>
+                          <span class="author-block"><a href="mailto:douhk@buaa.edu.cn">Hongkun Dou</a><sup>1</sup>,</span>
+                          <span class="author-block"><a href="mailto:ydeng@buaa.edu.cn">Yue Deng</a><sup>1,2</sup>,</span>
+                          <span class="author-block"><a href="mailto:lihongjue@buaa.edu.cn">Hongjue Li</a><sup>1</sup><sup>*</sup></span>
                         </div>
+                                                
+                        <!-- Institution List -->
+                        <div class="is-size-5 publication-authors">
+                          <span class="author-block"><sup>1</sup>Beihang University</span>
+                          <span class="author-block"><sup>2</sup>Zhongguancun Academy</span>
+                          <span class="author-block"><sup>*</sup>Corresponding author</span>
+                        </div>
+                        
+
+                        <div class="publication-links">
+                          <!-- Paper Link -->
+                          <span class="link-block">
+                            <a href="https://dl.acm.org/doi/10.1145/3746027.3754888"
+                               class="external-link button is-normal is-rounded is-dark">
+                              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                              <span>Paper</span>
+                            </a>
+                          </span>
+                        
+                        <!-- arXiv Link -->
+                        <span class="link-block">
+                          <a href="https://arxiv.org/abs/XXXX.XXXXX"
+                            class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon"><i class="fas fa-book"></i></span>
+                            <span>arXiv</span>
+                          </a>
+                        </span>
+                        
+                          <!-- Code Link -->
+                          <span class="link-block">
+                            <a href="https://github.com/MarineSTD-GS/MarineSTD-GS"
+                               class="external-link button is-normal is-rounded is-dark">
+                              <span class="icon"><i class="fab fa-github"></i></span>
+                              <span>Code</span>
+                            </a>
+                          </span>
+                        
+                          <!-- Dataset Link -->
+                          <span class="link-block">
+                            <a href="https://marinestd-gs.github.io/dataset.html"
+                               class="external-link button is-normal is-rounded is-dark">
+                              <span class="icon"><i class="far fa-images"></i></span>
+                              <span>Dataset</span>
+                            </a>
+                          </span>                      
+                        
+
                     </div>
                 </div>
             </div>
@@ -102,22 +162,26 @@
                     <h2 class="title is-2">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            Reconstructing realistic underwater scenes from underwater video remains a meaningful yet challenging task in the multimedia domain. 
-                            The inherent spatiotemporal degradations in underwater imaging, including caustics, flickering, attenuation, and backscattering, 
-                            often lead to inaccurate geometry and appearance in existing 3D reconstruction methods. 
-                            While a few recent works have explored underwater degradation-aware reconstruction, they often address either temporal or spatial degradation alone, 
-                            falling short in more real-world underwater scenarios where both types of degradation occur. 
-                        </p>
-                        <p>We propose <strong>MartineSTD-GS</strong>, a novel 3D Gaussian Splatting-based framework that explicitly models both temporal and spatial degradations 
-                            for realistic underwater scene reconstruction. Specifically, we introduce two paired Gaussian primitives: 
-                            Intrinsic Gaussians represent the true scene, while Degraded Gaussians render the observations. 
-                            The degraded colors are physically derived from the intrinsic ones via a Spatiotemporal Degradation Modeling (SDM) module, 
-                            enabling self-supervised disentanglement of realistic appearance from degraded images. To ensure stable training and accurate geometry, 
-                            we further propose a Multi-Stage Optimization strategy and a Depth-Guided Geometry Loss. 
-                            We also construct a simulated benchmark with diverse degradations and ground-truth appearances for comprehensive evaluation. 
+                          Reconstructing realistic underwater scenes from underwater video remains a meaningful yet challenging task in the multimedia domain. 
+                          The inherent spatiotemporal degradations in underwater imaging, including caustics, flickering, attenuation, and backscattering, 
+                          frequently result in inaccurate geometry and appearance in existing 3D reconstruction methods. 
+                          While a few recent works have explored underwater degradation-aware reconstruction, they often address either spatial or temporal degradation alone, 
+                          falling short in more real-world underwater scenarios where both types of degradation occur. 
                         </p>
                         <p>
-                            Experiments on both simulated and real-world datasets show that MarineSTD-GS robustly handles spatiotemporal degradations and outperforms existing methods in novel view synthesis with realistic, water-free scene appearances.
+                          We propose <strong>MartineSTD-GS</strong>, a novel 3D Gaussian Splatting-based framework that explicitly models 
+                          both temporal and spatial degradations for realistic underwater scene reconstruction. 
+                          Specifically, we introduce two paired Gaussian primitives: Intrinsic Gaussians represent the true scene, 
+                          while Degraded Gaussians render the degraded observations. 
+                          The color of each Degraded Gaussian is physically derived from its paired Intrinsic Gaussian via a Spatiotemporal Degradation Modeling (SDM) module, 
+                          enabling self-supervised disentanglement of realistic appearance from degraded images. 
+                          To ensure stable training and accurate geometry, we further propose a Depth-Guided Geometry Loss and a Multi-Stage Optimization strategy. 
+                          We also construct a simulated benchmark with diverse spatial and temporal degradations and ground-truth appearances for comprehensive evaluation.                           
+                        </p>
+                        <p>
+                          Experiments on both simulated and real-world datasets 
+                          show that MarineSTD-GS robustly handles spatiotemporal degradations and 
+                          outperforms existing methods in novel view synthesis with realistic, water-free scene appearances.
                         </p>
                     </div>
                 </div>
