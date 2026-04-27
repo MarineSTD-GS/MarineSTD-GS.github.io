@@ -116,6 +116,15 @@
                               <span class="icon"><i class="fab fa-github"></i></span>
                               <span>Code</span>
                             </a>
+                          </span>
+
+                          <!-- Dataset Link -->
+                          <span class="link-block">
+                            <a href="https://drive.google.com/drive/folders/1Krv_3S2rq7ynxr80tyFKT-twKtLm1ug5?usp=sharing"
+                               class="external-link button is-normal is-rounded is-dark">
+                              <span class="icon"><i class="far fa-images"></i></span>
+                              <span>Dataset</span>
+                            </a>
                           </span>                        
 
                     </div>
@@ -159,7 +168,7 @@
                           falling short in more real-world underwater scenarios where both types of degradation occur. 
                         </p>
                         <p>
-                          We propose <strong>MartineSTD-GS</strong>, a novel 3D Gaussian Splatting-based framework that explicitly models 
+                          We propose <strong>MarineSTD-GS</strong>, a novel 3D Gaussian Splatting-based framework that explicitly models 
                           both temporal and spatial degradations for realistic underwater scene reconstruction. 
                           Specifically, we introduce two paired Gaussian primitives: Intrinsic Gaussians represent the true scene, 
                           while Degraded Gaussians render the degraded observations. 
@@ -193,9 +202,9 @@
       <!-- (1) Pipeline Figure -->
       <div class="columns is-centered">
         <div class="column is-one">
-          <h3 class="title is-4">The overall pipeline of MartineSTD-GS</h3>
+          <h3 class="title is-4">The overall pipeline of MarineSTD-GS</h3>
           <figure class="image">
-            <img src="static/images/overview.png" alt="Pipeline of MartineSTD-GS" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+            <img src="static/images/overview.png" alt="Pipeline of MarineSTD-GS" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
             <figcaption style="margin-top: 10px; font-size: 1rem; color: #555; text-align: justify;">
                 Given a training view, MarineSTD-GS predicts degradation parameters to derive degraded colors for rendering. Optimization is guided by photometric supervision, depth consistency, and a multi-stage strategy to ensure stable training.
               </figcaption>
